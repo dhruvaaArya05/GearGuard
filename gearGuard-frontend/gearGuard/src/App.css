@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f2f2f2;
+  /* light gray like Odoo */
+  color: #333;
+}
+
+
+/* Header */
+.navbar {
+  /* background: #875A7B; */
+  /* color: white; */
+  /* padding: 12px 20px;
+  display: flex; */
+  /* justify-content: space-between; */
+  align-items: center;
+  font-size: 18px;
+}
+
+
+/* Top nav buttons */
+.nav-links {
+  background: #fff;
+  padding: 10px 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.nav-links button {
+  margin-right: 10px;
+  background: #eaeaea;
+  color: #333;
+  border-radius: 4px;
+  padding: 6px 12px;
+}
+
+.nav-links button:hover {
+  background: #d5d5d5;
+}
+
+/* Buttons */
+button {
+  background: #875A7B;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #6f4b65;
+}
+
+/* Inputs */
+input,
+select {
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Layout */
+.container {
+  padding: 20px;
+}
+
+/* Kanban */
+.kanban {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.column {
+  background: #fafafa;
+  border-radius: 6px;
+  width: 260px;
+  min-height: 400px;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.column h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+  color: #875A7B;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-left: 4px solid #875A7B;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+  cursor: grab;
+}
+
+
+/* Cards */
+.card {
+  background: #fafafa;
+  border: 1px solid #ddd;
+  border-left: 4px solid #875A7B;
+  border-radius: 4px;
+  padding: 8px;
+  margin-bottom: 8px;
+  cursor: grab;
+}
+
+.card small {
+  display: block;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* Auth card */
+.auth-card {
+  max-width: 360px;
+  margin: 100px auto;
+  background: #fff;
+  padding: 25px;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+.app-shell {
+  max-width: 1200px;
+  margin: 20px auto;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  min-height: 80vh;
+}

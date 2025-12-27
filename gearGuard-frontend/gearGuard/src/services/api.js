@@ -9,12 +9,27 @@ export const getRequests = () =>
 export const getRequestsByEquipment = (id) =>
   fetch(`${API}/requests/equipment/${id}`).then(res => res.json());
 
-export const createRequest = (data) =>
-  fetch(`${API}/requests`, {
+// export const createRequest = (data) =>
+//   fetch(`${API}/requests`, {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(data),
+//   }).then(res => res.json());
+
+export const createRequest = async (data) => {
+  const res = await fetch("http://localhost:4000/api/requests", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  }).then(res => res.json());
+    body: JSON.stringify({
+      subject: data.subject,
+      status: data.status || "New",
+      equipment_id: data.equipment_id || null
+      // ❌ DO NOT send assigned_to here
+    })
+  });
+  return res.json();
+};
+
 
 export const updateRequest = (id, data) =>
   fetch(`${API}/requests/${id}`, {

@@ -18,7 +18,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="navbar">
       <h1>GearGuard</h1>
       <p>
         Welcome, <b>{user.name}</b> ({user.role})
@@ -33,15 +33,19 @@ function App() {
         </button>
       </p>
 
-      <button onClick={() => setPage("kanban")}>Kanban</button>
-      <button onClick={() => setPage("calender")}>Calender</button>
-      <button onClick={() => setPage("equipment")}>Equipment</button>
+      <div className="nav-links">
+        <button onClick={() => setPage("kanban")}>Kanban</button>
+        <button onClick={() => setPage("calender")}>Calender</button>
+        <button onClick={() => setPage("equipment")}>Equipment</button>
+      </div>
 
       <hr />
 
-      {page === "kanban" && <Kanban />}
-      {page === "calender" && <Calender />}
-      {page === "equipment" && <Equipment />}
+      <div className="container">
+        {page === "kanban" && <Kanban />}
+        {page === "calender" && <Calender />}
+        {page === "equipment" && <Equipment />}
+      </div>
     </div>
   );
 }

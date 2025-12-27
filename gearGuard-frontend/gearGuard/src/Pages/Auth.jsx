@@ -37,7 +37,7 @@ export default function Auth({ onLogin }) {
   };
 
   return (
-    <div style={{ maxWidth: 350, margin: "100px auto" }}>
+    <div className="auth-card">
       <h2>{isSignup ? "Signup" : "Login"}</h2>
 
       {isSignup && (
