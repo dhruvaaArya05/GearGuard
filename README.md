@@ -75,7 +75,7 @@ View updates across system
 - ---
 
 ## 📁 Project Structure
-
+<pre>
 root/
 │
 ├── backend/
@@ -95,8 +95,10 @@ root/
 │ └── ...
 │
 └── README.md
+</pre>
 
 ## Database Schema
+<pre>
 users (
   id PK,
   name,
@@ -141,6 +143,8 @@ requests (
   status ENUM('New','In Progress','Repaired','Scrap'),
   created_at
 );
+
+</pre>
 
 ## ✅ What This Gives You
 
