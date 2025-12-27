@@ -1,4 +1,6 @@
 import { useState } from "react";
+const passwordRegex =
+  /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
 
 const API = "http://localhost:4000/api/users";
 
@@ -11,11 +13,49 @@ export default function Auth({ onLogin }) {
   const [role, setRole] = useState("user");
   const [msg, setMsg] = useState("");
 
+  // const submit = async () => {
+  //   setMsg("");
+
+  //   if (isSignup && password !== confirm)
+  //     return setMsg("Passwords do not match");
+
+  //   const url = isSignup ? `${API}/signup` : `${API}/login`;
+
+  //   const body = isSignup
+  //     ? { name, email, password, role }
+  //     : { email, password };
+
+  //   const res = await fetch(url, {
+  //     method: "POST",
+  //     headers: { "Content-Type": "application/json" },
+  //     body: JSON.stringify(body)
+  //   });
+
+  //   const data = await res.json();
+  //   if (!res.ok) return setMsg(data.message || "Error");
+
+  //   localStorage.setItem("user", JSON.stringify(data));
+  //   onLogin(data);
+  // };
+
   const submit = async () => {
     setMsg("");
 
-    if (isSignup && password !== confirm)
-      return setMsg("Passwords do not match");
+    if (!email || !password || (isSignup && (!name || !confirm))) {
+      return setMsg("All fields are required");
+    }
+
+    if (isSignup) {
+      if (password !== confirm) {
+        return setMsg("Passwords do not match");
+      }
+
+      if (!passwordRegex.test(password)) {
+        return setMsg(
+          "Password must be 8+ chars with uppercase, lowercase, number & special character"
+        );
+      }
+    }
 
     const url = isSignup ? `${API}/signup` : `${API}/login`;
 
@@ -23,18 +63,23 @@ export default function Auth({ onLogin }) {
       ? { name, email, password, role }
       : { email, password };
 
-    const res = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    });
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body)
+      });
 
-    const data = await res.json();
-    if (!res.ok) return setMsg(data.message || "Error");
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Authentication failed");
 
-    localStorage.setItem("user", JSON.stringify(data));
-    onLogin(data);
+      localStorage.setItem("user", JSON.stringify(data));
+      onLogin(data);
+    } catch (err) {
+      setMsg(err.message);
+    }
   };
+
 
   return (
     <div className="auth-card">
@@ -100,7 +145,22 @@ export default function Auth({ onLogin }) {
         </span>
       </p>
 
-      {msg && <p style={{ color: "red" }}>{msg}</p>}
+
+      {msg && (
+        <div
+          style={{
+            background: "#ffe0e0",
+            color: "#900",
+            padding: "8px",
+            borderRadius: "6px",
+            marginTop: "10px",
+            textAlign: "center"
+          }}
+        >
+          {msg}
+        </div>
+      )}
+
     </div>
   );
 }
