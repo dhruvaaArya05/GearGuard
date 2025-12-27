@@ -4,12 +4,14 @@ const cors = require('cors');
 const equipmentRouter = require('./routers/equipmentRouter');
 const requestRouter = require('./routers/requestsRouter');
 const teamsRouter = require('./routers/teamsRouter');
+const usersRouter = require('./routers/usersRouter');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/eqipment', equipmentRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/equipment', equipmentRouter);
 app.use('/api/requests', requestRouter);
 app.use('/api/teams', teamsRouter);
 
